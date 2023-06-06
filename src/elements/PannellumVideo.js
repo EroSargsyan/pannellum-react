@@ -117,17 +117,18 @@ class PannellumVideo extends Component {
     }
 
     if (state === 'update') {
-      _this.video = videojs(_this.videoNode);
-      var cuurentHS = [].concat(_this.video.pnlmViewer.getConfig().hotSpots);
-      _this.video.on('loadeddata', function () {
-        _this.video.pnlmViewer.setYaw(_this.props.yaw);
-        _this.video.pnlmViewer.setPitch(_this.props.pitch);
-        _this.video.pnlmViewer.setHfov(_this.props.hfov);
-        _this.video.pnlmViewer.setHfovBounds([
-          _this.props.minHfov,
-          _this.props.maxHfov
+      this.video = videojs(this.videoNode);
+      let cuurentHS = [...this.video.pnlmViewer.getConfig().hotSpots];
+      this.video.on('loadeddata', function () {
+        this.video.pnlmViewer.setYaw(this.props.yaw);
+        this.video.pnlmViewer.setPitch(this.props.pitch);
+        this.video.pnlmViewer.setHfov(this.props.hfov);
+        this.video.pnlmViewer.setHfovBounds([
+          this.props.minHfov,
+          this.props.maxHfov
         ]);
       });
+
       //remove all hotspots
       cuurentHS.map((hs) => this.video.pnlmViewer.removeHotSpot(hs.id));
       // Adding new hotspots
